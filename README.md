@@ -1,0 +1,1 @@
+Esta aplicação está sendo desenvolvida para controle de métricas e inventário.

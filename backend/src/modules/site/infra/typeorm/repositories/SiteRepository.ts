@@ -1,3 +1,10 @@
+/*
+ * @Author: Jean Amadeu
+ * @Date: 2020-06-20 15:31:42
+ * @Last Modified by:   Jean Amadeu
+ * @Last Modified time: 2020-06-20 15:31:42
+ */
+
 import { getRepository, Repository } from 'typeorm';
 import ICreateSiteDTO from '@modules/site/dtos/ICreateSiteDTO';
 import Site from '@modules/site/infra/typeorm/entities/Site';
@@ -10,8 +17,8 @@ class SiteRepository implements ISiteRepository {
     this.ormRepository = getRepository(Site);
   }
 
-  public async create({ name }: ICreateSiteDTO): Promise<Site> {
-    const site = this.ormRepository.create({ name });
+  public async create(siteData: ICreateSiteDTO): Promise<Site> {
+    const site = this.ormRepository.create(siteData);
     await this.ormRepository.save(site);
     return site;
   }

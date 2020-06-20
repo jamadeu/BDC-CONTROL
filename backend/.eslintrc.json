@@ -27,6 +27,7 @@
       "no-new": "off",
       "no-prototype-builtins": "off",
       "no-restricted-syntax": "off",
+      "camelcase": "off",
       "max-classes-per-file": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "no-console": "off",

@@ -4,7 +4,7 @@ import AppError from '@shared/errors/AppError';
 import ISiteRepository from '../repositories/ISiteRepository';
 
 interface IRequest {
-  site: string;
+  name: string;
 }
 
 @injectable()
@@ -14,13 +14,13 @@ class CreateSiteService {
     private siteRepository: ISiteRepository
   ) {}
 
-  public async execute({ site }: IRequest): Promise<Site> {
-    const checkSiteExists = await this.siteRepository.findByNameSite(site);
+  public async execute({ name }: IRequest): Promise<Site> {
+    const checkSiteExists = await this.siteRepository.findByNameSite(name);
     if (checkSiteExists) {
       throw new AppError('Site already exists');
     }
 
-    const createdSite = await this.siteRepository.create({ site });
+    const createdSite = await this.siteRepository.create({ name });
     return createdSite;
   }
 }

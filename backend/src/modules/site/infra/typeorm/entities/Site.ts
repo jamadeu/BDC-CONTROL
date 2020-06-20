@@ -12,7 +12,7 @@ class Site {
   id: number;
 
   @Column()
-  site: string;
+  name: string;
 
   @CreateDateColumn()
   created_at: Date;

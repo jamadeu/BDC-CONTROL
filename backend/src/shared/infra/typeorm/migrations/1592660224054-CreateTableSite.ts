@@ -14,7 +14,7 @@ export default class CreateTableSite1592660224054
             generationStrategy: 'increment',
           },
           {
-            name: 'site',
+            name: 'name',
             type: 'varchar',
           },
           {

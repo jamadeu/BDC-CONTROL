@@ -5,6 +5,6 @@ export default interface ISiteRepository {
   create(date: ICreateSiteDTO): Promise<Site>;
   update(site: Site): Promise<Site>;
   findById(id: number): Promise<Site | undefined>;
-  findByNameSite(nameSite: string): Promise<Site | undefined>;
+  findByNameSite(name: string): Promise<Site | undefined>;
   findAll(): Promise<Site[]>;
 }

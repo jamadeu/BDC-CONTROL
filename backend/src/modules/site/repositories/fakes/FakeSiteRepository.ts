@@ -28,7 +28,7 @@ class FakeSiteRepository implements ISiteRepository {
   }
 
   public async findByNameSite(nameSite: string): Promise<Site | undefined> {
-    return this.sites.find((site) => site.site === nameSite);
+    return this.sites.find((site) => site.name === nameSite);
   }
 
   public async findAll(): Promise<Site[]> {

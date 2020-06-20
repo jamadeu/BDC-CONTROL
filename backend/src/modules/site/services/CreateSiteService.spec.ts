@@ -13,20 +13,20 @@ describe('CreateSite', () => {
 
   it('be able to create a new site', async () => {
     const site = await createSite.execute({
-      site: 'site',
+      name: 'site',
     });
     expect(site).toHaveProperty('id');
-    expect(site.site).toBe('site');
+    expect(site.name).toBe('site');
   });
 
-  it('not possible to create a new site with a name that is already in use', async () => {
+  it('not be able to create a new site with a name that is already in use', async () => {
     await createSite.execute({
-      site: 'site',
+      name: 'site',
     });
 
     await expect(
       createSite.execute({
-        site: 'site',
+        name: 'site',
       })
     ).rejects.toBeInstanceOf(AppError);
   });

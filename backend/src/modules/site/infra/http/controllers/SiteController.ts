@@ -1,3 +1,10 @@
+/*
+ * @Author: Jean Amadeu
+ * @Date: 2020-06-20 15:33:09
+ * @Last Modified by:   Jean Amadeu
+ * @Last Modified time: 2020-06-20 15:33:09
+ */
+
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateSiteService from '@modules/site/services/CreateSiteService';
@@ -8,7 +15,7 @@ export default class SiteController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name } = request.body;
     const createSite = container.resolve(CreateSiteService);
-    const site = await createSite.execute(name);
+    const site = await createSite.execute({ name });
     return response.json(site);
   }
 

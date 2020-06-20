@@ -1,40 +1,37 @@
+import { getRepository, Repository } from 'typeorm';
 import ICreateSiteDTO from '@modules/site/dtos/ICreateSiteDTO';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import ISiteRepository from '@modules/site/repositories/ISiteRepository';
 
-// TODO refactor to use orm
-
 class SiteRepository implements ISiteRepository {
-  private sites: Site[] = [];
+  private ormRepository: Repository<Site>;
 
-  private nextIdAvailable = 1;
+  constructor() {
+    this.ormRepository = getRepository(Site);
+  }
 
-  public async create(data: ICreateSiteDTO): Promise<Site> {
-    const site = new Site();
-    Object.assign(site, { id: this.nextIdAvailable }, data);
-    this.nextIdAvailable += 1;
-    this.sites.push(site);
+  public async create({ name }: ICreateSiteDTO): Promise<Site> {
+    const site = this.ormRepository.create({ name });
+    await this.ormRepository.save(site);
     return site;
   }
 
   public async update(site: Site): Promise<Site> {
-    const findIndex = this.sites.findIndex(
-      (findSite) => findSite.id === site.id
-    );
-    this.sites[findIndex] = site;
-    return site;
+    return this.ormRepository.save(site);
   }
 
   public async findById(id: number): Promise<Site | undefined> {
-    return this.sites.find((site) => site.id === id);
+    return this.ormRepository.findOne(id);
   }
 
   public async findByNameSite(nameSite: string): Promise<Site | undefined> {
-    return this.sites.find((site) => site.site === nameSite);
+    return this.ormRepository.findOne({
+      where: { name: nameSite },
+    });
   }
 
   public async findAll(): Promise<Site[]> {
-    return this.sites;
+    return this.ormRepository.find();
   }
 }
 

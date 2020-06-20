@@ -1,3 +1,8 @@
+/*
+ * @Author: Jean Amadeu
+ * @Last Modified by:   Jean Amadeu
+ */
+
 import { inject, injectable } from 'tsyringe';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import ISiteRepository from '../repositories/ISiteRepository';

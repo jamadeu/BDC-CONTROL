@@ -1,8 +1,6 @@
 /*
  * @Author: Jean Amadeu
- * @Date: 2020-06-20 15:31:42
  * @Last Modified by:   Jean Amadeu
- * @Last Modified time: 2020-06-20 15:31:42
  */
 
 import { getRepository, Repository } from 'typeorm';

@@ -2,6 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "author": "Jean Amadeu",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.10.3",

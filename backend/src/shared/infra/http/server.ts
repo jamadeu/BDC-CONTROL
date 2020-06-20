@@ -1,8 +1,6 @@
 /*
  * @Author: Jean Amadeu
- * @Date: 2020-06-20 15:07:46
  * @Last Modified by:   Jean Amadeu
- * @Last Modified time: 2020-06-20 15:07:46
  */
 
 import 'reflect-metadata';

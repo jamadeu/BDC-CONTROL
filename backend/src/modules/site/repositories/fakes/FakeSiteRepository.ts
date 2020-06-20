@@ -1,3 +1,8 @@
+/*
+ * @Author: Jean Amadeu
+ * @Last Modified by:   Jean Amadeu
+ */
+
 import ICreateSiteDTO from '@modules/site/dtos/ICreateSiteDTO';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import ISiteRepository from '../ISiteRepository';

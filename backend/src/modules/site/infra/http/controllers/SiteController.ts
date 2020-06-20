@@ -1,8 +1,6 @@
 /*
  * @Author: Jean Amadeu
- * @Date: 2020-06-20 15:33:09
  * @Last Modified by:   Jean Amadeu
- * @Last Modified time: 2020-06-20 15:33:09
  */
 
 import { Request, Response } from 'express';

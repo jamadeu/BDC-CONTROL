@@ -1,8 +1,6 @@
 /*
  * @Author: Jean Amadeu
- * @Date: 2020-06-20 14:53:43
- * @Last Modified by: Jean Amadeu
- * @Last Modified time: 2020-06-20 14:56:20
+ * @Last Modified by:   Jean Amadeu
  */
 
 import { Router } from 'express';
@@ -26,6 +24,7 @@ sitesRouter.put(
   '/',
   celebrate({
     [Segments.BODY]: {
+      id: Joi.number().required(),
       name: Joi.string().required(),
     },
   }),

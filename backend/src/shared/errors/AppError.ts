@@ -1,3 +1,8 @@
+/*
+ * @Author: Jean Amadeu
+ * @Last Modified by:   Jean Amadeu
+ */
+
 class AppError {
   public readonly message: string;
 

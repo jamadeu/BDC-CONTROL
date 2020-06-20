@@ -1,3 +1,8 @@
+/*
+ * @Author: Jean Amadeu
+ * @Last Modified by:   Jean Amadeu
+ */
+
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreateTableSite1592660224054

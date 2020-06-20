@@ -1,3 +1,8 @@
+/*
+ * @Author: Jean Amadeu
+ * @Last Modified by:   Jean Amadeu
+ */
+
 import { inject, injectable } from 'tsyringe';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import AppError from '@shared/errors/AppError';
@@ -16,7 +21,6 @@ class UpdateSiteService {
   ) {}
 
   public async execute({ id, name }: IRequest): Promise<Site> {
-    console.log(await this.siteRepository.findAll());
     const checkSiteExists = await this.siteRepository.findById(id);
     if (!checkSiteExists) {
       throw new AppError('Site not found');

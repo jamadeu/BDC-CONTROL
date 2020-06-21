@@ -1,6 +1,5 @@
 /*
  * @Author: Jean Amadeu
- * @Last Modified by:   Jean Amadeu
  */
 
 import Site from '@modules/site/infra/typeorm/entities/Site';
@@ -11,4 +10,5 @@ export default interface ISiteRepository {
   findById(id: number): Promise<Site | undefined>;
   findByNameSite(name: string): Promise<Site | undefined>;
   findAll(): Promise<Site[]>;
+  update(site: Site): Promise<Site>;
 }

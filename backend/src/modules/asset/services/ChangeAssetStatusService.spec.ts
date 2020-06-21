@@ -1,24 +1,23 @@
 /*
  * @Author: Jean Amadeu
  */
-
-import AppError from '@shared/errors/AppError';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import CreateSiteService from '@modules/site/services/CreateSiteService';
-import FindByScanService from './FindAssetByScanService';
+import AppError from '@shared/errors/AppError';
 import FakeAssetRepository from '../repositories/fakes/FakeAssetRepository';
+import ChangeAssetStatus from './ChangeAssetStatusService';
 import CreateAssetRepositoy from './CreateAssetService';
 
 let fakeAssetRepository: FakeAssetRepository;
-let findByScan: FindByScanService;
+let changeStatus: ChangeAssetStatus;
 let createAsset: CreateAssetRepositoy;
 let fakeSiteRepository: FakeSiteRepository;
 let createSite: CreateSiteService;
 
-describe('FindAssetByScan', () => {
+describe('ChangeAssetStatus', () => {
   beforeEach(() => {
     fakeAssetRepository = new FakeAssetRepository();
-    findByScan = new FindByScanService(fakeAssetRepository);
+    changeStatus = new ChangeAssetStatus(fakeAssetRepository);
     fakeSiteRepository = new FakeSiteRepository();
     createSite = new CreateSiteService(fakeSiteRepository);
     createAsset = new CreateAssetRepositoy(
@@ -27,7 +26,7 @@ describe('FindAssetByScan', () => {
     );
   });
 
-  it('be able to find an asset by scanning', async () => {
+  it('be able to change the status of an asset', async () => {
     const site = await createSite.execute({
       name: 'site',
     });
@@ -36,14 +35,20 @@ describe('FindAssetByScan', () => {
       serie: 'serie',
       site_id: site.id,
     });
-    const scan = `1S${asset.partnumber}${asset.serie}`.toUpperCase();
-    const foundAsset = await findByScan.execute({ scan });
-
-    expect(foundAsset).toEqual(asset);
+    const updatedAsset = await changeStatus.execute({
+      status: 'REPAIR',
+      asset_id: asset.id,
+    });
+    expect(updatedAsset.id).toEqual(asset.id);
+    expect(updatedAsset.status).toBe('REPAIR');
   });
 
-  it('not be able to find an asset that does not exist', async () => {
-    const scan = 'non-exists-scan';
-    await expect(findByScan.execute({ scan })).rejects.toBeInstanceOf(AppError);
+  it('not be able to change the status of an asset that does not exist', async () => {
+    await expect(
+      changeStatus.execute({
+        status: 'REPAIR',
+        asset_id: -1,
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

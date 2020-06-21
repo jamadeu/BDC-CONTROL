@@ -6,6 +6,14 @@
 export default interface ICreateAssetDTO {
   partnumber: string;
   serie: string;
-  status: string;
+  status:
+    | 'RAA'
+    | 'REPAIR'
+    | 'ANALISYS_PENDING'
+    | 'IN_TRANSIT'
+    | 'DEPLOYED'
+    | 'PENDING_GARS'
+    | 'SCRAP'
+    | 'GARS';
   site_id: number;
 }

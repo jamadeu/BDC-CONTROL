@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  IsNull,
 } from 'typeorm';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import Asset from './Asset';
@@ -43,17 +44,20 @@ class InTransit {
   @Column()
   invoice: string;
 
-  @Column()
+  @Column({ nullable: true })
   prev: string;
 
-  @Column()
+  @Column({ nullable: true })
   status: string;
 
-  @Column()
+  @Column({ nullable: true })
   note: string;
 
   @Column({ default: false })
   delivered: boolean;
+
+  @Column({ default: 'GREEN' })
+  sla: string;
 
   @CreateDateColumn()
   created_at: Date;

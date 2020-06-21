@@ -41,13 +41,20 @@ export class CreateTableInTransit1592754571724 implements MigrationInterface {
           {
             name: 'prev',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'status',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'note',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'sla',
             type: 'varchar',
           },
           {

@@ -13,17 +13,11 @@ class AssetRepository implements IAsseRepository {
 
   public async create(data: ICreateAssetDTO): Promise<Asset> {
     const asset = new Asset();
-    Object.assign(asset, { id: this.nextIdAvailable }, data);
+    Object.assign(asset, { id: this.nextIdAvailable }, data, {
+      status: 'Available',
+    });
     this.nextIdAvailable += 1;
     this.assets.push(asset);
-    return asset;
-  }
-
-  public async update(asset: Asset): Promise<Asset> {
-    const findIndex = this.assets.findIndex(
-      (findAsset) => findAsset.id === asset.id
-    );
-    this.assets[findIndex] = asset;
     return asset;
   }
 

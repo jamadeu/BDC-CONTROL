@@ -6,18 +6,6 @@ import ICreateAssetDTO from '@modules/asset/dtos/ICreateAssetDTO';
 import Asset from '@modules/asset/infra/typeorm/entities/Asset';
 import IAsseRepository from '../IAssetRepository';
 
-type Status = {
-  status:
-    | 'RAA'
-    | 'REPAIR'
-    | 'ANALISYS_PENDING'
-    | 'IN_TRANSIT'
-    | 'DEPLOYED'
-    | 'PENDING_GARS'
-    | 'SCRAP'
-    | 'GARS';
-};
-
 class FakeAssetRepository implements IAsseRepository {
   private assets: Asset[] = [];
 
@@ -25,17 +13,11 @@ class FakeAssetRepository implements IAsseRepository {
 
   public async create(data: ICreateAssetDTO): Promise<Asset> {
     const asset = new Asset();
-    Object.assign(asset, { id: this.nextIdAvailable }, data);
+    Object.assign(asset, { id: this.nextIdAvailable }, data, {
+      status: 'Available',
+    });
     this.nextIdAvailable += 1;
     this.assets.push(asset);
-    return asset;
-  }
-
-  public async update(asset: Asset): Promise<Asset> {
-    const findIndex = this.assets.findIndex(
-      (findAsset) => findAsset.id === asset.id
-    );
-    this.assets[findIndex] = asset;
     return asset;
   }
 

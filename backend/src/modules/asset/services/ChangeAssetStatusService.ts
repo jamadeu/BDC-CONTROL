@@ -24,8 +24,7 @@ class ChangeAssetStatusService {
     if (!foundAsset) {
       throw new AppError('Asset not found');
     }
-    foundAsset.status = status;
-    return foundAsset;
+    return this.assetRepository.changeStatus(status, asset_id);
   }
 }
 

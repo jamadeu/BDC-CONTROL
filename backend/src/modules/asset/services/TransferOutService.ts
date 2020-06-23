@@ -37,6 +37,9 @@ class TransferOutService {
     if (!asset) {
       throw new AppError('Asset not found');
     }
+    if (asset.status === 'IN_TRANSIT') {
+      throw new AppError('Asset already in transit');
+    }
     const inTransit = await this.transferRepository.transferOut({
       asset_id,
       site_origem_id: asset.site_id,

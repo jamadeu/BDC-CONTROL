@@ -2,7 +2,6 @@
  * @Author: Jean Amadeu
  */
 
-// TODO validar se asset existe
 // TODO validar se o site existe
 // TODO validar se o asset ja não está em transito
 
@@ -73,6 +72,34 @@ describe('TransferOut', () => {
       transfer.execute({
         asset_id: -1,
         site_destination_id: site.id,
+        invoice: 'invoice',
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('not be able to transfer an asset if it is already in transit', async () => {
+    const site1 = await createSite.execute({
+      name: 'site1',
+    });
+    const site2 = await createSite.execute({
+      name: 'site2',
+    });
+    const asset = await createAsset.execute({
+      partnumber: 'partnumber',
+      serie: 'serie',
+      site_id: site1.id,
+    });
+
+    await transfer.execute({
+      asset_id: asset.id,
+      site_destination_id: site2.id,
+      invoice: 'invoice',
+    });
+
+    await expect(
+      transfer.execute({
+        asset_id: asset.id,
+        site_destination_id: site2.id,
         invoice: 'invoice',
       })
     ).rejects.toBeInstanceOf(AppError);

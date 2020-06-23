@@ -47,6 +47,11 @@ class FakeAssetRepository implements IAsseRepository {
   public async findAll(): Promise<Asset[]> {
     return this.assets;
   }
+
+  public async changesAssetLocation(
+    asset_id: number,
+    site_id: number
+  ): Promise<Asset> {}
 }
 
 export default FakeAssetRepository;

@@ -11,4 +11,5 @@ export default interface IAssetRepository {
   findAll(): Promise<Asset[]>;
   findByScan(scan: string): Promise<Asset | undefined>;
   changeStatus(status: string, asset_id: number): Promise<Asset>;
+  changesAssetLocation(asset_id: number, site_id: number): Promise<Asset>;
 }

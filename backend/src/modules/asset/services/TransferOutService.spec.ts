@@ -2,9 +2,6 @@
  * @Author: Jean Amadeu
  */
 
-// TODO validar se o site existe
-// TODO validar se o asset ja não está em transito
-
 import FakeTransferRepsitory from '@modules/asset/repositories/fakes/FakeTransferRepository';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import CreateSiteService from '@modules/site/services/CreateSiteService';
@@ -100,6 +97,25 @@ describe('TransferOut', () => {
       transfer.execute({
         asset_id: asset.id,
         site_destination_id: site2.id,
+        invoice: 'invoice',
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('not be able to transfer an asset to a site with a invalid site id', async () => {
+    const site = await createSite.execute({
+      name: 'site',
+    });
+    const asset = await createAsset.execute({
+      partnumber: 'partnumber',
+      serie: 'serie',
+      site_id: site.id,
+    });
+
+    await expect(
+      transfer.execute({
+        asset_id: asset.id,
+        site_destination_id: -1,
         invoice: 'invoice',
       })
     ).rejects.toBeInstanceOf(AppError);

@@ -40,6 +40,13 @@ class TransferOutService {
     if (asset.status === 'IN_TRANSIT') {
       throw new AppError('Asset already in transit');
     }
+    const checkDestinationExists = await this.siteRepository.findById(
+      site_destination_id
+    );
+    if (!checkDestinationExists) {
+      throw new AppError('Destination not found');
+    }
+
     const inTransit = await this.transferRepository.transferOut({
       asset_id,
       site_origem_id: asset.site_id,

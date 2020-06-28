@@ -34,6 +34,6 @@ export default class CreateTableSite1592660224054
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('tb_site');
+    await queryRunner.dropTable('sites');
   }
 }

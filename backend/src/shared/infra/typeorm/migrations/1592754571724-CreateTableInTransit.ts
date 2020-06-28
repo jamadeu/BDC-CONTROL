@@ -72,36 +72,36 @@ export class CreateTableInTransit1592754571724 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_in_transit',
+      'in_transit',
       new TableForeignKey({
         name: 'SiteOrigem',
         columnNames: ['site_origem_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_site',
+        referencedTableName: 'sites',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'tb_in_transit',
+      'in_transit',
       new TableForeignKey({
         name: 'SiteDestination',
         columnNames: ['site_destination_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_site',
+        referencedTableName: 'sites',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'tb_in_transit',
+      'in_transit',
       new TableForeignKey({
         name: 'AssetInTransit',
         columnNames: ['asset_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_asset',
+        referencedTableName: 'assets',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       })
@@ -109,9 +109,9 @@ export class CreateTableInTransit1592754571724 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_in_transit', 'AssetInTransit');
-    await queryRunner.dropForeignKey('tb_in_transit', 'SiteDestination');
-    await queryRunner.dropForeignKey('tb_in_transit', 'SiteOrigem');
-    await queryRunner.dropTable('tb_in_transit');
+    await queryRunner.dropForeignKey('in_transit', 'AssetInTransit');
+    await queryRunner.dropForeignKey('in_transit', 'SiteDestination');
+    await queryRunner.dropForeignKey('in_transit', 'SiteOrigem');
+    await queryRunner.dropTable('in_transit');
   }
 }

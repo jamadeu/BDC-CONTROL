@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import ICreateSiteDTO from '@modules/site/dtos/ICreateSiteDTO';
 

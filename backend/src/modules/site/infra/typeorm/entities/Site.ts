@@ -1,8 +1,3 @@
-/*
- * @Author: Jean Amadeu
- * @Last Modified by:   Jean Amadeu
- */
-
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -11,7 +6,7 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_site')
+@Entity('sites')
 class Site {
   @PrimaryGeneratedColumn('increment')
   id: number;

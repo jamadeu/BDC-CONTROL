@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,12 +6,11 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-  IsNull,
 } from 'typeorm';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import Asset from './Asset';
 
-@Entity('tb_in_transit')
+@Entity('in_transit')
 class InTransit {
   @PrimaryGeneratedColumn('increment')
   id: number;

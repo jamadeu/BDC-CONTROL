@@ -1,8 +1,3 @@
-/*
- * @Author: Jean Amadeu
- * @Last Modified by:   Jean Amadeu
- */
-
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreateTableSite1592660224054
@@ -10,7 +5,7 @@ export default class CreateTableSite1592660224054
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_site',
+        name: 'sites',
         columns: [
           {
             name: 'id',

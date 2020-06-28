@@ -1,8 +1,3 @@
-/*
- * @Author: Jean Amadeu
- * @Last Modified by:   Jean Amadeu
- */
-
 import {
   MigrationInterface,
   QueryRunner,
@@ -14,7 +9,7 @@ export class CreateTableAsset1592682226847 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_asset',
+        name: 'assets',
         columns: [
           {
             name: 'id',

@@ -54,12 +54,12 @@ export class CreateTableAsset1592682226847 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_asset',
+      'assets',
       new TableForeignKey({
         name: 'AssetLocation',
         columnNames: ['site_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_site',
+        referencedTableName: 'sites',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       })
@@ -67,7 +67,7 @@ export class CreateTableAsset1592682226847 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_asset', 'AssetLocation');
-    await queryRunner.dropTable('tb_asset');
+    await queryRunner.dropForeignKey('assets', 'AssetLocation');
+    await queryRunner.dropTable('assets');
   }
 }

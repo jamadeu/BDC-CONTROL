@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import {
   MigrationInterface,
   QueryRunner,
@@ -13,7 +9,7 @@ export class CreateTableInTransit1592754571724 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_in_transit',
+        name: 'in_transit',
         columns: [
           {
             name: 'id',

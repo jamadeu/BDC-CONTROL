@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -13,7 +9,7 @@ import {
 } from 'typeorm';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 
-@Entity('tb_asset')
+@Entity('assets')
 class Asset {
   @PrimaryGeneratedColumn('increment')
   id: number;

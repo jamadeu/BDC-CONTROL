@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import { container } from 'tsyringe';
 
 import ISiteRepository from '@modules/site/repositories/ISiteRepository';

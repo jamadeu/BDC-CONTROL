@@ -1,6 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
 import { inject, injectable } from 'tsyringe';
 import Asset from '@modules/asset/infra/typeorm/entities/Asset';
 import AppError from '@shared/errors/AppError';

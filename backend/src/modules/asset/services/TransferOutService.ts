@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import { inject, injectable } from 'tsyringe';
 import InTransit from '@modules/asset/infra/typeorm/entities/InTransit';
 import ITransferRepository from '@modules/asset/repositories/ITransferRepository';

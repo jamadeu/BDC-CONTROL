@@ -1,8 +1,3 @@
-/*
- * @Author: Jean Amadeu
- * @Last Modified by:   Jean Amadeu
- */
-
 import { getRepository, Repository } from 'typeorm';
 import ICreateSiteDTO from '@modules/site/dtos/ICreateSiteDTO';
 import Site from '@modules/site/infra/typeorm/entities/Site';

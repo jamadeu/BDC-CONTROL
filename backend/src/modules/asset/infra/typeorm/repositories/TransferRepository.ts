@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 // TODO refactor
 
 import InTransit from '@modules/asset/infra/typeorm/entities/InTransit';

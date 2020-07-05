@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import AppError from '@shared/errors/AppError';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import CreateSiteService from './CreateSiteService';

@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import FakeTransferRepsitory from '@modules/asset/repositories/fakes/FakeTransferRepository';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import CreateSiteService from '@modules/site/services/CreateSiteService';

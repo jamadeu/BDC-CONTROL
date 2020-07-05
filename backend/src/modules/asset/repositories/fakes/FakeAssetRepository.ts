@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import ICreateAssetDTO from '@modules/asset/dtos/ICreateAssetDTO';
 import Asset from '@modules/asset/infra/typeorm/entities/Asset';
 import IAsseRepository from '../IAssetRepository';

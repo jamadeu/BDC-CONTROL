@@ -1,8 +1,3 @@
-/*
- * @Author: Jean Amadeu
- * @Last Modified by:   Jean Amadeu
- */
-
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateSiteService from '@modules/site/services/CreateSiteService';

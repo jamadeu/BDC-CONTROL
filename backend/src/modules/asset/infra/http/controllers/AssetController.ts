@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateAssetService from '@modules/asset/services/CreateAssetService';

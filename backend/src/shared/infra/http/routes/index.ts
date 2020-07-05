@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import { Router } from 'express';
 import sitesRouter from '@modules/site/infra/http/routes/site.routes';
 import assetRouter from '@modules/asset/infra/http/routes/asset.routes';

@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 export default interface ICreateAssetDTO {
   partnumber: string;
   serie: string;

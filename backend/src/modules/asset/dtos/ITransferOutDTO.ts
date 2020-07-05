@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 export default interface ITransferOutDTO {
   asset_id: number;
   site_origem_id: number;

@@ -1,8 +1,3 @@
-/*
- * @Author: Jean Amadeu
- * @Last Modified by:   Jean Amadeu
- */
-
 import 'reflect-metadata';
 import 'express-async-errors';
 import '@shared/infra/typeorm';

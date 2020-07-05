@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import SiteController from '../controllers/SiteController';

@@ -1,7 +1,3 @@
-/*
- * @Author: Jean Amadeu
- */
-
 import InTransit from '@modules/asset/infra/typeorm/entities/InTransit';
 import ITransferOutDTO from '@modules/asset/dtos/ITransferOutDTO';
 import ITransferRepository from '../ITransferRepository';

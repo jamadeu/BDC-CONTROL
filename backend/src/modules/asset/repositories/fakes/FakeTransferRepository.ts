@@ -24,6 +24,10 @@ class FakeTransferRepository implements ITransferRepository {
     received.delivered = true;
     return received;
   }
+
+  public async findById(in_transit_id: number): Promise<InTransit | undefined> {
+    return this.inTransits.find((inTransit) => inTransit.id === in_transit_id);
+  }
 }
 
 export default FakeTransferRepository;

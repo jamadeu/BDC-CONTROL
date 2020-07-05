@@ -4,4 +4,5 @@ export default interface ITransferOutDTO {
   site_destination_id: number;
   invoice: string;
   sla: 'GREEN';
+  delivered: false;
 }

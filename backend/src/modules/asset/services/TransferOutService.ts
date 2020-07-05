@@ -49,6 +49,7 @@ class TransferOutService {
       site_destination_id,
       invoice,
       sla: 'GREEN',
+      delivered: false,
     });
     const assetStatus = 'IN_TRANSIT';
     await this.assetRepository.changeStatus(assetStatus, asset_id);

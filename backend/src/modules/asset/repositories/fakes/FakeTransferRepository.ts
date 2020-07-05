@@ -22,6 +22,7 @@ class FakeTransferRepository implements ITransferRepository {
     const received = new InTransit();
     Object.assign(received, this.inTransits[findIndex]);
     received.delivered = true;
+    this.inTransits[findIndex] = received;
     return received;
   }
 

@@ -2,6 +2,7 @@ import FakeTransferRepsitory from '@modules/asset/repositories/fakes/FakeTransfe
 import FakeAssetRepository from '@modules/asset/repositories/fakes/FakeAssetRepository';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import CreateSiteService from '@modules/site/services/CreateSiteService';
+import AppError from '@shared/errors/AppError';
 import CreateAssetRepositoy from './CreateAssetService';
 import TransferOutService from './TransferOutService';
 import ReceiveAssetService from './ReceiveAssetService';
@@ -60,5 +61,12 @@ describe('ReceiveAsset', () => {
 
     expect(receivedInTransit.delivered).toBeTruthy();
     expect(receivedAsset.site_id).toBe(site2.id);
+  });
+
+  it('not be able to receive an asset with invalid id', async () => {
+    const in_transit_id = -1;
+    await expect(receive.execute({ in_transit_id })).rejects.toBeInstanceOf(
+      AppError
+    );
   });
 });

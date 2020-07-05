@@ -31,7 +31,7 @@ class FakeTransferRepository implements ITransferRepository {
   }
 
   public async findAllNotDelivered(): Promise<InTransit[]> {
-    return this.inTransits;
+    return this.inTransits.filter((inTransit) => inTransit.delivered === false);
   }
 }
 

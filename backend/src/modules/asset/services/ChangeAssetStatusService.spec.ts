@@ -21,7 +21,7 @@ describe('ChangeAssetStatus', () => {
     const asset = await fakeAssetRepository.create({
       partnumber: 'partnumber',
       serie: 'serie',
-      partnumber_serie: '1spartnumberserie'.toUpperCase(),
+      partnumber_serie: '1SPARTNUMBERSERIE',
       site_id: site.id,
     });
     const updatedAsset = await changeStatus.execute({

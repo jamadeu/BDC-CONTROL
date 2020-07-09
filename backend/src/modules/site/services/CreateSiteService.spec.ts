@@ -1,3 +1,4 @@
+import { isUuid } from 'uuidv4';
 import AppError from '@shared/errors/AppError';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import CreateSiteService from './CreateSiteService';
@@ -16,6 +17,7 @@ describe('CreateSite', () => {
       name: 'site',
     });
     expect(site).toHaveProperty('id');
+    expect(isUuid(site.id)).toBeTruthy();
     expect(site.name).toBe('site');
   });
 

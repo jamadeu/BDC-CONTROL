@@ -1,3 +1,4 @@
+import { uuid } from 'uuidv4';
 import InTransit from '@modules/asset/infra/typeorm/entities/InTransit';
 import ITransferOutDTO from '@modules/asset/dtos/ITransferOutDTO';
 import ITransferRepository from '../ITransferRepository';
@@ -5,12 +6,9 @@ import ITransferRepository from '../ITransferRepository';
 class FakeTransferRepository implements ITransferRepository {
   private inTransits: InTransit[] = [];
 
-  private nextIdAvailable = 1;
-
   public async transferOut(data: ITransferOutDTO): Promise<InTransit> {
     const inTransit = new InTransit();
-    Object.assign(inTransit, { id: this.nextIdAvailable }, data);
-    this.nextIdAvailable += 1;
+    Object.assign(inTransit, { id: uuid() }, data);
     this.inTransits.push(inTransit);
     return inTransit;
   }

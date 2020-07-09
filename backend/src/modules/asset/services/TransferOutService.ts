@@ -6,8 +6,8 @@ import IAssetRepository from '@modules/asset/repositories/IAssetRepository';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
-  asset_id: number;
-  site_destination_id: number;
+  asset_id: string;
+  site_destination_id: string;
   invoice: string;
 }
 

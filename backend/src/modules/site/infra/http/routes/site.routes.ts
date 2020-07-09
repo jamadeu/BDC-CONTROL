@@ -19,7 +19,7 @@ sitesRouter.put(
   '/',
   celebrate({
     [Segments.BODY]: {
-      id: Joi.number().required(),
+      id: Joi.uuid().required(),
       name: Joi.string().required(),
     },
   }),

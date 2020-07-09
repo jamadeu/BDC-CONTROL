@@ -1,19 +1,17 @@
 import AppError from '@shared/errors/AppError';
+import { isUuid } from 'uuidv4';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
-import CreateSiteService from '@modules/site/services/CreateSiteService';
 import FakeAssetRepository from '../repositories/fakes/FakeAssetRepository';
 import CreateAssetRepositoy from './CreateAssetService';
 
 let fakeAssetRepository: FakeAssetRepository;
 let createAsset: CreateAssetRepositoy;
 let fakeSiteRepository: FakeSiteRepository;
-let createSite: CreateSiteService;
 
 describe('CreateAsset', () => {
   beforeEach(() => {
     fakeAssetRepository = new FakeAssetRepository();
     fakeSiteRepository = new FakeSiteRepository();
-    createSite = new CreateSiteService(fakeSiteRepository);
     createAsset = new CreateAssetRepositoy(
       fakeAssetRepository,
       fakeSiteRepository
@@ -21,7 +19,7 @@ describe('CreateAsset', () => {
   });
 
   it('be able to create a new asset', async () => {
-    const site = await createSite.execute({
+    const site = await fakeSiteRepository.create({
       name: 'site',
     });
     const asset = await createAsset.execute({
@@ -31,6 +29,7 @@ describe('CreateAsset', () => {
     });
 
     expect(asset).toHaveProperty('id');
+    expect(isUuid(asset.id)).toBeTruthy();
     expect(asset.partnumber).toBe('PARTNUMBER');
     expect(asset.serie).toBe('SERIE');
     expect(asset.partnumber_serie).toBe('1SPARTNUMBERSERIE');
@@ -39,7 +38,7 @@ describe('CreateAsset', () => {
   });
 
   it('not be able to create a new asset if it already exists', async () => {
-    const site = await createSite.execute({
+    const site = await fakeSiteRepository.create({
       name: 'site',
     });
     await createAsset.execute({
@@ -62,7 +61,7 @@ describe('CreateAsset', () => {
       createAsset.execute({
         partnumber: 'partnumber',
         serie: 'serie',
-        site_id: -1,
+        site_id: 'invalid site id',
       })
     ).rejects.toBeInstanceOf(AppError);
   });

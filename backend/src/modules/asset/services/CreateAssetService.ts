@@ -7,7 +7,7 @@ import IAssetRepository from '../repositories/IAssetRepository';
 interface IRequest {
   partnumber: string;
   serie: string;
-  site_id: number;
+  site_id: string;
 }
 
 @injectable()

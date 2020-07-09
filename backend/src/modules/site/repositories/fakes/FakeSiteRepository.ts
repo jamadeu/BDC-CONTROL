@@ -1,3 +1,4 @@
+import { uuid } from 'uuidv4';
 import ICreateSiteDTO from '@modules/site/dtos/ICreateSiteDTO';
 import Site from '@modules/site/infra/typeorm/entities/Site';
 import ISiteRepository from '../ISiteRepository';
@@ -5,12 +6,9 @@ import ISiteRepository from '../ISiteRepository';
 class FakeSiteRepository implements ISiteRepository {
   private sites: Site[] = [];
 
-  private nextIdAvailable = 1;
-
   public async create(data: ICreateSiteDTO): Promise<Site> {
     const site = new Site();
-    Object.assign(site, { id: this.nextIdAvailable }, data);
-    this.nextIdAvailable += 1;
+    Object.assign(site, { id: uuid() }, data);
     this.sites.push(site);
     return site;
   }
@@ -23,7 +21,7 @@ class FakeSiteRepository implements ISiteRepository {
     return site;
   }
 
-  public async findById(id: number): Promise<Site | undefined> {
+  public async findById(id: string): Promise<Site | undefined> {
     return this.sites.find((site) => site.id === id);
   }
 

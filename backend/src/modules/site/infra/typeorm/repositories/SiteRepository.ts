@@ -20,7 +20,7 @@ class SiteRepository implements ISiteRepository {
     return this.ormRepository.save(site);
   }
 
-  public async findById(id: number): Promise<Site | undefined> {
+  public async findById(id: string): Promise<Site | undefined> {
     return this.ormRepository.findOne(id);
   }
 

@@ -5,7 +5,7 @@ import IAssetRepository from '@modules/asset/repositories/IAssetRepository';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
-  in_transit_id: number;
+  in_transit_id: string;
 }
 
 @injectable()

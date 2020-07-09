@@ -48,7 +48,6 @@ class TransferOutService {
       site_origem_id: asset.site_id,
       site_destination_id,
       invoice,
-      sla: 'GREEN',
       delivered: false,
     });
     const assetStatus = 'IN_TRANSIT';

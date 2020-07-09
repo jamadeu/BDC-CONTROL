@@ -43,7 +43,6 @@ describe('ListAllInTransitNotDelivered', () => {
       site_origem_id: site1.id,
       site_destination_id: site2.id,
       invoice: 'invoice',
-      sla: 'GREEN',
       delivered: false,
     });
 
@@ -52,7 +51,6 @@ describe('ListAllInTransitNotDelivered', () => {
       site_origem_id: site1.id,
       site_destination_id: site2.id,
       invoice: 'invoice2',
-      sla: 'GREEN',
       delivered: false,
     });
 

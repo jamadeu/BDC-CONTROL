@@ -40,19 +40,13 @@ class InTransit {
   invoice: string;
 
   @Column({ nullable: true })
-  prev: string;
-
-  @Column({ nullable: true })
   status: string;
 
   @Column({ nullable: true })
-  note: string;
+  comment: string;
 
   @Column({ default: false })
   delivered: boolean;
-
-  @Column({ default: 'GREEN' })
-  sla: string;
 
   @CreateDateColumn()
   created_at: Date;

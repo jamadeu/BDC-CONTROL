@@ -1,7 +1,7 @@
 export default interface ITransferOutDTO {
-  asset_id: number;
-  site_origem_id: number;
-  site_destination_id: number;
+  asset_id: string;
+  site_origem_id: string;
+  site_destination_id: string;
   invoice: string;
   sla: 'GREEN';
   delivered: false;

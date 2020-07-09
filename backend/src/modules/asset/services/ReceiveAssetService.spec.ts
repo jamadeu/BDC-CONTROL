@@ -1,35 +1,19 @@
 import FakeTransferRepsitory from '@modules/asset/repositories/fakes/FakeTransferRepository';
 import FakeAssetRepository from '@modules/asset/repositories/fakes/FakeAssetRepository';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
-import CreateSiteService from '@modules/site/services/CreateSiteService';
 import AppError from '@shared/errors/AppError';
-import CreateAssetRepositoy from './CreateAssetService';
-import TransferOutService from './TransferOutService';
 import ReceiveAssetService from './ReceiveAssetService';
 
 let fakeTransferRepsitory: FakeTransferRepsitory;
-let transfer: TransferOutService;
 let fakeAssetRepository: FakeAssetRepository;
-let createAsset: CreateAssetRepositoy;
 let fakeSiteRepository: FakeSiteRepository;
-let createSite: CreateSiteService;
 let receive: ReceiveAssetService;
 
 describe('ReceiveAsset', () => {
   beforeEach(() => {
     fakeAssetRepository = new FakeAssetRepository();
     fakeSiteRepository = new FakeSiteRepository();
-    createSite = new CreateSiteService(fakeSiteRepository);
-    createAsset = new CreateAssetRepositoy(
-      fakeAssetRepository,
-      fakeSiteRepository
-    );
     fakeTransferRepsitory = new FakeTransferRepsitory();
-    transfer = new TransferOutService(
-      fakeTransferRepsitory,
-      fakeAssetRepository,
-      fakeSiteRepository
-    );
     receive = new ReceiveAssetService(
       fakeTransferRepsitory,
       fakeAssetRepository
@@ -37,22 +21,26 @@ describe('ReceiveAsset', () => {
   });
 
   it('be able to receive an asset that is in transit', async () => {
-    const site1 = await createSite.execute({
+    const site1 = await fakeSiteRepository.create({
       name: 'site1',
     });
-    const site2 = await createSite.execute({
+    const site2 = await fakeSiteRepository.create({
       name: 'site2',
     });
-    const asset = await createAsset.execute({
+    const asset = await fakeAssetRepository.create({
       partnumber: 'partnumber',
       serie: 'serie',
+      partnumber_serie: '1SPARTNUMBERSERIE',
       site_id: site1.id,
     });
 
-    const inTransit = await transfer.execute({
+    const inTransit = await fakeTransferRepsitory.transferOut({
       asset_id: asset.id,
+      site_origem_id: site1.id,
       site_destination_id: site2.id,
       invoice: 'invoice',
+      sla: 'GREEN',
+      delivered: false,
     });
 
     const in_transit_id = inTransit.id;
@@ -64,7 +52,7 @@ describe('ReceiveAsset', () => {
   });
 
   it('not be able to receive an asset with invalid id', async () => {
-    const in_transit_id = -1;
+    const in_transit_id = 'invalid id';
     await expect(receive.execute({ in_transit_id })).rejects.toBeInstanceOf(
       AppError
     );

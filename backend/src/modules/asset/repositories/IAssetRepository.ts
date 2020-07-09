@@ -3,9 +3,9 @@ import ICreateAssetDTO from '@modules/asset/dtos/ICreateAssetDTO';
 
 export default interface IAssetRepository {
   create(data: ICreateAssetDTO): Promise<Asset>;
-  findById(id: number): Promise<Asset | undefined>;
+  findById(id: string): Promise<Asset | undefined>;
   findAll(): Promise<Asset[]>;
   findByScan(scan: string): Promise<Asset | undefined>;
-  changeStatus(status: string, asset_id: number): Promise<Asset>;
-  changesAssetLocation(asset_id: number, site_id: number): Promise<Asset>;
+  changeStatus(status: string, asset_id: string): Promise<Asset>;
+  changesAssetLocation(asset_id: string, site_id: string): Promise<Asset>;
 }

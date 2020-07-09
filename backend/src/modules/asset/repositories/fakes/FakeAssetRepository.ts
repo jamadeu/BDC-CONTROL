@@ -17,7 +17,7 @@ class FakeAssetRepository implements IAsseRepository {
     return asset;
   }
 
-  public async changeStatus(status: string, asset_id: number): Promise<Asset> {
+  public async changeStatus(status: string, asset_id: string): Promise<Asset> {
     const findIndex = this.assets.findIndex(
       (findAsset) => findAsset.id === asset_id
     );
@@ -36,7 +36,7 @@ class FakeAssetRepository implements IAsseRepository {
     return this.assets[findIndex];
   }
 
-  public async findById(id: number): Promise<Asset | undefined> {
+  public async findById(id: string): Promise<Asset | undefined> {
     return this.assets.find((asset) => asset.id === id);
   }
 
@@ -45,8 +45,8 @@ class FakeAssetRepository implements IAsseRepository {
   }
 
   public async changesAssetLocation(
-    asset_id: number,
-    site_id: number
+    asset_id: string,
+    site_id: string
   ): Promise<Asset> {
     const asset = this.assets.find(
       (assetToCheck) => assetToCheck.id === asset_id

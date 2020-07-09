@@ -17,7 +17,7 @@ class AssetRepository implements IAssetRepository {
     return asset;
   }
 
-  public async changeStatus(status: string, asset_id: number): Promise<Asset> {
+  public async changeStatus(status: string, asset_id: string): Promise<Asset> {
     const asset = await this.ormRepository.findOne(asset_id);
     asset.status = status;
     await this.ormRepository.save(asset);
@@ -35,12 +35,21 @@ class AssetRepository implements IAssetRepository {
     return foundAsset;
   }
 
-  public async findById(id: number): Promise<Asset | undefined> {
+  public async findById(id: string): Promise<Asset | undefined> {
     return this.ormRepository.findOne(id);
   }
 
   public async findAll(): Promise<Asset[]> {
     return this.ormRepository.find();
+  }
+
+  public async changesAssetLocation(
+    site_id: string,
+    asset_id: string
+  ): Promise<Asset> {
+    const asset = await this.ormRepository.findOne(asset_id);
+    asset.site_id = site_id;
+    return asset;
   }
 }
 

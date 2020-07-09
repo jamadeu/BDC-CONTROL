@@ -1,3 +1,4 @@
+import { uuid } from 'uuidv4';
 import ICreateAssetDTO from '@modules/asset/dtos/ICreateAssetDTO';
 import Asset from '@modules/asset/infra/typeorm/entities/Asset';
 import IAsseRepository from '../IAssetRepository';
@@ -5,14 +6,11 @@ import IAsseRepository from '../IAssetRepository';
 class FakeAssetRepository implements IAsseRepository {
   private assets: Asset[] = [];
 
-  private nextIdAvailable = 1;
-
   public async create(data: ICreateAssetDTO): Promise<Asset> {
     const asset = new Asset();
-    Object.assign(asset, { id: this.nextIdAvailable }, data, {
+    Object.assign(asset, { id: uuid() }, data, {
       status: 'Available',
     });
-    this.nextIdAvailable += 1;
     this.assets.push(asset);
     return asset;
   }

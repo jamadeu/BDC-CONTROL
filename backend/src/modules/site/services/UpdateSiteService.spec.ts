@@ -1,21 +1,18 @@
 import AppError from '@shared/errors/AppError';
 import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import UpdateSiteService from './UpdateSiteService';
-import CreateSiteService from './CreateSiteService';
 
 let fakeSiteRepository: FakeSiteRepository;
-let createSite: CreateSiteService;
 let updateSite: UpdateSiteService;
 
 describe('UpdateSite', () => {
   beforeEach(() => {
     fakeSiteRepository = new FakeSiteRepository();
-    createSite = new CreateSiteService(fakeSiteRepository);
     updateSite = new UpdateSiteService(fakeSiteRepository);
   });
 
   it('be able to update a site', async () => {
-    const site = await createSite.execute({
+    const site = await fakeSiteRepository.create({
       name: 'site',
     });
 
@@ -30,18 +27,18 @@ describe('UpdateSite', () => {
   it('not be able to update a site with a invalid id', async () => {
     await expect(
       updateSite.execute({
-        id: -1,
+        id: 'invalid-id',
         name: 'site',
       })
     ).rejects.toBeInstanceOf(AppError);
   });
 
   it('not be able update the name site to a name that is already in use', async () => {
-    await createSite.execute({
+    await fakeSiteRepository.create({
       name: 'site',
     });
 
-    const siteToUpdate = await createSite.execute({
+    const siteToUpdate = await fakeSiteRepository.create({
       name: 'siteToUpdate',
     });
 

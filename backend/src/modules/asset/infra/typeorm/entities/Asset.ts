@@ -11,8 +11,8 @@ import Site from '@modules/site/infra/typeorm/entities/Site';
 
 @Entity('assets')
 class Asset {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   partnumber: string;
@@ -27,7 +27,7 @@ class Asset {
   status: string;
 
   @Column()
-  site_id: number;
+  site_id: string;
 
   @ManyToOne(() => Site, { eager: true })
   @JoinColumn({ name: 'site_id' })

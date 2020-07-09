@@ -8,8 +8,8 @@ import {
 
 @Entity('sites')
 class Site {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;

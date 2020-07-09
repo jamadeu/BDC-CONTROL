@@ -40,7 +40,7 @@ export class CreateTableAsset1592682226847 implements MigrationInterface {
           },
           {
             name: 'site_id',
-            type: 'int',
+            type: 'uuid',
           },
           {
             name: 'created_at',

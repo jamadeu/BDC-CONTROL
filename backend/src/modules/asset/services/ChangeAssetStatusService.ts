@@ -5,7 +5,7 @@ import IAssetRepository from '../repositories/IAssetRepository';
 
 interface IRequest {
   status: 'AVAILABLE' | 'REPAIR' | 'IN_TRANSIT';
-  asset_id: number;
+  asset_id: string;
 }
 
 @injectable()

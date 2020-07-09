@@ -12,25 +12,25 @@ import Asset from './Asset';
 
 @Entity('in_transit')
 class InTransit {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
-  asset_id: number;
+  asset_id: string;
 
   @ManyToOne(() => Asset, { eager: true })
   @JoinColumn({ name: 'asset_id' })
   asset: Asset;
 
   @Column()
-  site_origem_id: number;
+  site_origem_id: string;
 
   @ManyToOne(() => Site, { eager: true })
   @JoinColumn({ name: 'site_origem_id' })
   origem: Site;
 
   @Column()
-  site_destination_id: number;
+  site_destination_id: string;
 
   @ManyToOne(() => Site, { eager: true })
   @JoinColumn({ name: 'site_destination_id' })

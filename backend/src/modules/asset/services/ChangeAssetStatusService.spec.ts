@@ -1,35 +1,27 @@
-import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
-import CreateSiteService from '@modules/site/services/CreateSiteService';
 import AppError from '@shared/errors/AppError';
+import FakeSiteRepository from '@modules/site/repositories/fakes/FakeSiteRepository';
 import FakeAssetRepository from '../repositories/fakes/FakeAssetRepository';
-import ChangeAssetStatus from './ChangeAssetStatusService';
-import CreateAssetRepositoy from './CreateAssetService';
+import ChangeAssetStatusService from './ChangeAssetStatusService';
 
 let fakeAssetRepository: FakeAssetRepository;
-let changeStatus: ChangeAssetStatus;
-let createAsset: CreateAssetRepositoy;
+let changeStatus: ChangeAssetStatusService;
 let fakeSiteRepository: FakeSiteRepository;
-let createSite: CreateSiteService;
 
 describe('ChangeAssetStatus', () => {
   beforeEach(() => {
     fakeAssetRepository = new FakeAssetRepository();
-    changeStatus = new ChangeAssetStatus(fakeAssetRepository);
+    changeStatus = new ChangeAssetStatusService(fakeAssetRepository);
     fakeSiteRepository = new FakeSiteRepository();
-    createSite = new CreateSiteService(fakeSiteRepository);
-    createAsset = new CreateAssetRepositoy(
-      fakeAssetRepository,
-      fakeSiteRepository
-    );
   });
 
   it('be able to change the status of an asset', async () => {
-    const site = await createSite.execute({
+    const site = await fakeSiteRepository.create({
       name: 'site',
     });
-    const asset = await createAsset.execute({
+    const asset = await fakeAssetRepository.create({
       partnumber: 'partnumber',
       serie: 'serie',
+      partnumber_serie: '1spartnumberserie'.toUpperCase(),
       site_id: site.id,
     });
     const updatedAsset = await changeStatus.execute({
@@ -44,7 +36,7 @@ describe('ChangeAssetStatus', () => {
     await expect(
       changeStatus.execute({
         status: 'REPAIR',
-        asset_id: -1,
+        asset_id: 'invalid id',
       })
     ).rejects.toBeInstanceOf(AppError);
   });

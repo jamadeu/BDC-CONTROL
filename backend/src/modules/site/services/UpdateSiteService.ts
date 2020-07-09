@@ -4,7 +4,7 @@ import AppError from '@shared/errors/AppError';
 import ISiteRepository from '../repositories/ISiteRepository';
 
 interface IRequest {
-  id: number;
+  id: string;
   name: string;
 }
 
